@@ -33,7 +33,7 @@ DI 의 장점
 <img alt="AOP구조" src="/img/AOP.PNG">
 
 
-POJO(plain Old java Object) :
+POJO(plain Old java Object) : 순수 Java만을 통해서 생성한 객체
 *
 
 ## Spring 설치하기
@@ -63,9 +63,11 @@ src/main/resources :  자바 클래스에서 사용하는 리소스를 보관하
 application.properties : 설정 내용들  
 설정 파일이 다른데 가보면 없는 경우가 있는데 그럴 경우는 yaml 이 설정 파일인 경우가 있음.  
  
-kts 세팅에서 불러온 gradle 설정이 다 있음.  
-jsp 바로 지원하지 않기 때문에 우리가 설정을 해야함.  
+kts : 세팅에서 불러온 gradle 설정이 다 있음.  
+
+jsp는 바로 지원하지 않기 때문에 우리가 설정을 해야함.  
 ```
+* JSP 사용을 위한 설치
 Eclipse market place 에서  
 Eclipse Enterprise Java and Web Developer Tools 3.29 설치  
 ```
@@ -79,15 +81,69 @@ implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', ver
 implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
-<!--어노테이션-->
+<br>
+
+## Bean
+---
+> 스프링 컨테이너가 관리하는 자바 객체로 지금까지는 new 연산을 통해 객체를 생성하고 메서드를 호출했다면 Spring에서는 IoC(제어의 역전)가 적용되어 이러한 객체의 생성과 사용자의 제어권을 스프링에게 넘긴다.  
+사용자는 직접 new연산을 이용해 생성한 객체를 사용하지 않고 스프링에 의하여 관리당하는 자바 객체를 사용함.  
+*여기서 사용되는 객체를 Bean객체라고 함.* 👍
+
+<br>
+
+## Model 객체
+--- 
+스프링MVC에서 제공하는 객체로 model객체에 객체를 저장해서 뷰페이지로 전달하는 역할
+
+```java
+<!-- JSP에서 보내는 형식 -->
+request.setAttribute("받는 페이지에서 사용할 이름", 보낼 변수 또는 객체);
+Request.getRequestDispacher("이동할 URL 주소").forward(req,resp);
+```
+JSP에서 위처럼 request로 데이터를 보냈다면 Spring에서는 아래와 같이 보냄
+```java
+public String home(Model model){
+    model.addAttribute("받는 페이지에서 사용할 이름", 보낼 변수 또는 객체);
+    return "이동할 URL 주소";
+}
+```
+
+<br>
+
+## @ 어노테이션
+---
 @RequestMapping(value="/test4",method=RequestMethod.GET)  
 @RequestMapping(value="/test4",method=RequestMethod.POST)  
 
-@Data  
+@Data : lombok에서 지원하는 어노테이션
+> Getter,Setter,ToString, EqualsAndHashCode, RequiredArgsConstructor를 합쳐놓은 어노테이션으로 POJO와 bean과 관련된 모든 보일러플레이트를 생성함.  
+
+<br>
+
+### Mapper 와 Repository
+---
+Mapper와 Repository란  
+> DB에 연결하여 데이터를 가져올 때 사용하는 어노테이션  
+
+차이는?  
+> 1. Mapper는 Repository에 포함되어 있음.  
+Mapper는 **.xml과 같이 SQL문을 정의 해놓은 파일과 많이 사용하여 모델과 매핑시키는 ibatis(mybatis) 방식에서 사용하는 것으로 mapper는 매핑이라는 단어에서 유추할 수 있듯이 SQL문(XML)을 메소드(java)로 매핑 시켜주는 어노테이션  
+
+**즉, 정의해놓은 SQL와 개발할 때 사용하는 메소드를 연결하고 결과 값을 정의해놓은 타입으로 매핑 시키는 어노테이션**
+
+> 2. Repository는 mapper처럼 sql문을 메소드랑 매핑해서 쓰든 아니든 DB를 조회 및 조작하는 것에 중점을 둔 개념..(mapper보다 좀 더 큰 개념)  
+repository는 비지니스 로직에서 DB의 데이터를 조회 및 조작하는것을 분리하기 위한 것으로 DB와 연결이 강한 Mapper와 달리 DB의 데이터를 조회 및 조작하는 것에 중점을 뒀다는 것이 가장 큰 개념
+```
+비지니스 로직이란,
+데이터를 어떻게 생성하고 조회하고 수정할 지를 정의하는 것으로 비지니스 로직은 프로그램의 핵심으로 얼마나 쉽게 짜느냐에 따라 프로젝트에 큰 영향을 끼친다.
+```
+>@Repository는 @Component이 붙어 있어서 Bean Configuration 파일에 Bean을 따로 등록하지 않아도 사용할 수 있음.
+
+@Mapper : 
+@Repository : db쪽에 연결되는 BEAN 객체 DAO 
 
 
 @Autowired : (스프링에서는 DI를 지원하기 때문에 ...)  
-@Repository : db쪽에 연결되는 BEAN 객체 DAO 
 
 
 스프링부트는 xml파일도 정적이기 때문에 resources 안에 만들어주어야 함.
@@ -100,5 +156,5 @@ ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 ```
 
 ### 센세가 스리슬쩍 말하는 단어들
-보일러플레이트코드 :
+보일러플레이트코드 : 재사용가능한 코드  
 ORM 방식 :
