@@ -142,6 +142,7 @@ repository는 비지니스 로직에서 DB의 데이터를 조회 및 조작하�
 @Mapper : 
 @Repository : db쪽에 연결되는 BEAN 객체 DAO 
 
+@Req
 
 @Autowired : (스프링에서는 DI를 지원하기 때문에 ...)  
 
@@ -155,6 +156,19 @@ repository는 비지니스 로직에서 DB의 데이터를 조회 및 조작하�
 ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 ```
 
+
+JPA : ORM(객체와 DB의 관계성)
+
+Entity 객체를 만들어서 DB의 테이블과 매칭
+Entitiy Manager Fectory 라는 클래스에서 Entity
+해당하는 Entitiy를 저장하는 공간 : Persistance Context(영속성 컨텍스트)
+하이버네이트
+
+Thymeleaf : html 소스에 작성했을 때 다이나믹한 구조를 JSP처럼 할 수 없으니 그걸 지원해주는 종속성
+H2 Database : 작은 형태의 DB, 메모리 사이즈 정도의 저장공간을 DB 형태로 임시로 만드는 종속성(꼭 메모리 사이즈는 아님)
+
+
 ### 센세가 스리슬쩍 말하는 단어들
 보일러플레이트코드 : 재사용가능한 코드  
 ORM 방식 :
+Dialect : DB마다 약간씩의 문법 차이가 있어서 그것을 방언이라고 표기한 것임.
