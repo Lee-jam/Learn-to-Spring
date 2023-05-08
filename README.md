@@ -159,16 +159,34 @@ ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 
 JPA : ORM(객체와 DB의 관계성)
 
-Entity 객체를 만들어서 DB의 테이블과 매칭
-Entitiy Manager Fectory 라는 클래스에서 Entity
-해당하는 Entitiy를 저장하는 공간 : Persistance Context(영속성 컨텍스트)
+Entity 객체를 만들어서 DB의 테이블과 매칭  
+Entitiy Manager Fectory 라는 클래스에서 Entity  
+해당하는 Entitiy를 저장하는 공간 : Persistance Context(영속성 컨텍스트)  
 하이버네이트
 
-Thymeleaf : html 소스에 작성했을 때 다이나믹한 구조를 JSP처럼 할 수 없으니 그걸 지원해주는 종속성
-H2 Database : 작은 형태의 DB, 메모리 사이즈 정도의 저장공간을 DB 형태로 임시로 만드는 종속성(꼭 메모리 사이즈는 아님)
+Thymeleaf : html 소스에 작성했을 때 다이나믹한 구조를 JSP처럼 할 수 없으니 그걸 지원해주는 의존성   
+H2 Database : 작은 형태의 DB, 메모리 사이즈 정도의 저장공간을 DB 형태로 임시로 만드는 의존성(꼭 메모리 사이즈는 아님)  
 
+---
 
+Spring Security  
+CSRF(Cross Site Request Forgery)
+_csrf :
+
+영속성 전이 :
+고아객체 :
+
+AuditorAware : JPA에서 기본으로 지원  
+어디팅에서 빈번하게 쓰이는 4가지
+최초 작성일시 - regTime  
+작성자 -   
+수정 일시 - updateTime  
+수정자 -  
+
+ModelMapper 라이브러리를 쓰면 엔티티나 DTO의 변수명을 똑같이 써줘야 함.
+DTO 자동생성까지는 아님 정말 엔티티와 DTO를 매핑하는 용도
 ### 센세가 스리슬쩍 말하는 단어들
 보일러플레이트코드 : 재사용가능한 코드  
 ORM 방식 :
 Dialect : DB마다 약간씩의 문법 차이가 있어서 그것을 방언이라고 표기한 것임.
+MockMVC : 어플리케이션 서버에 배포하지 않고 테스트용 MVC환경을 만들어 요청 및 전송, 응답기능을제공해주는 유틸리티
