@@ -2,7 +2,19 @@
 스프링 공부하기!  
 스프링은 기본적으로 Model2 방식
 
+## Spring 
+---
+- 자바 Framework
+- 오픈소스(무료)로 되어있음 → 내부를 볼 수 있기 떄문에 뜯어 고칠 수 있음.
+- IoC 컨테이너를 갖음.
+- Dependency Injection을 지원함.(의존성 주입)
+- 엄청 많은 필터, 어노테이션 지원
+    + 스프링 컨테이너의 필터 이름 : 인터셉터  
+    
+기본적으로 객체를 new를 통해 인스턴스화하면 Heap 메모리 영역에 저장되고 생성된 객체를 다른데에서 쓸수 없고 다시 인스턴스화 해야하지만 스프링에서는 IoC와 DI으로 Component시켜 다른 곳에서 사용할 수 있도록 함.
+
 ## IOC(Inversion of Control)
+---
 - 제어의 역전
 - 제어의 흐름을 사용자가 컨트롤 하지 않고 위임한 특별한 객체에 모든 것을 맡기는 것
     + 기존 사용자가 모든 작업을 제어하던 것을 특별한 객체에 모든 것을 위임하여 객체의 생성부터 생명주기 등 모든 객체에 대한 제어권이 넘어간 것
@@ -112,11 +124,13 @@ public String home(Model model){
 
 ## @ 어노테이션
 ---
+> 컴파일러가 무시하지않고 컴파일러에게 힌트를 주는 주석  
+
 @RequestMapping(value="/test4",method=RequestMethod.GET)  
 @RequestMapping(value="/test4",method=RequestMethod.POST)  
 
 @Data : lombok에서 지원하는 어노테이션
-> Getter,Setter,ToString, EqualsAndHashCode, RequiredArgsConstructor를 합쳐놓은 어노테이션으로 POJO와 bean과 관련된 모든 보일러플레이트를 생성함.  
+> Getter,Setter,ToString, EqualsAndHashCode, RequiredArgsConstructor 등을 합친 어노테이션으로 POJO와 bean과 관련된 모든 보일러플레이트를 생성함.  
 
 <br>
 
