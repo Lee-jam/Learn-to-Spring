@@ -170,7 +170,6 @@ repository는 비지니스 로직에서 DB의 데이터를 조회 및 조작하�
 ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 ```
 
-
 JPA : ORM(객체와 DB의 관계성)
 
 Entity 객체를 만들어서 DB의 테이블과 매칭  
@@ -198,8 +197,16 @@ AuditorAware : JPA에서 기본으로 지원
 수정자 -  
 
 ModelMapper 라이브러리를 쓰면 엔티티나 DTO의 변수명을 똑같이 써줘야 함.
-DTO 자동생성까지는 아님 정말 엔티티와 DTO를 매핑하는 용도
+DTO 자동생성까지는 아님 정말 엔티티와 DTO를 매핑하는 용도  
+
+웹과 연동되는 부분은 Controller에서 끝나야 함.  
+
+아작스로 처리할 때 컨트롤러 문제점
+
+<br>
+
 ### 센세가 스리슬쩍 말하는 단어들
+---
 보일러플레이트코드 : 재사용가능한 코드  
 ORM 방식 :
 Dialect : DB마다 약간씩의 문법 차이가 있어서 그것을 방언이라고 표기한 것임.
